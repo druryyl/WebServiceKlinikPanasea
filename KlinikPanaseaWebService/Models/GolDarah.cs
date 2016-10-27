@@ -11,5 +11,7 @@ namespace KlinikPanaseaWebService.Models
 
         public string  NamaGolDarah { get; set; }
 
+        //ghjk
+
     }
 }
