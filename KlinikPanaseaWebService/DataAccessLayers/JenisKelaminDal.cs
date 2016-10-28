@@ -56,9 +56,9 @@ namespace KlinikPanaseaWebService.DataAccessLayers
             }
         }
 
-        public Poliklinik GetData(string idGolDarah)
+        public JenisKelamin GetData(string idGolDarah)
         {
-            Poliklinik retVal = null;
+            JenisKelamin retVal = null;
 
             using (SqlConnection conn = new SqlConnection(DbConnection.ConnectionString()))
             {
@@ -71,10 +71,10 @@ namespace KlinikPanaseaWebService.DataAccessLayers
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.HasRows)
                 {
-                    retVal = new Poliklinik
+                    retVal = new JenisKelamin
                     {
-                        IdPoliklinik = dr["ID_Jenis_Kelamin"].ToString(),
-                        NamaPoliklinik = dr["Kelamin"].ToString()
+                        IdJenisKelamin = dr["ID_Jenis_Kelamin"].ToString(),
+                        NamaJenisKelamin = dr["Kelamin"].ToString()
                     };
                 }
                 cmd.Dispose();

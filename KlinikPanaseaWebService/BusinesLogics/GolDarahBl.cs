@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using KlinikPanaseaWebService.Models;
-using KlinikPanaseaWebService.DataAccessLayer;
+using KlinikPanaseaWebService.DataAccessLayers;
 
 namespace KlinikPanaseaWebService.BusinesLogics
 {
@@ -22,7 +22,7 @@ namespace KlinikPanaseaWebService.BusinesLogics
             if (dataGolDarah.IdGolDarah.Length == 0 ||
                 dataGolDarah.NamaGolDarah.Length == 0)
             {
-                throw new Exception("ID GolDarah atau Nama GolDarah masing kosong");
+                throw new Exception("ID GolDarah atau Nama GolDarah masih kosong");
             }
 
             //  cek apakah length kode-nya kurang dari 3 karakter
