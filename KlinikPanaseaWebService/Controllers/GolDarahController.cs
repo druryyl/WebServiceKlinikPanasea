@@ -11,32 +11,34 @@ namespace KlinikPanaseaWebService.Controllers
 {
     public class GolDarahController : ApiController
     {
-
-        // GET: api/GolDarah
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET: api/GolDarah/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
         // POST: api/GolDarah
-        public void Post([FromBody]string value)
+        public void Post(GolDarah value)
         {
+            blGolDarah.Insert(value);
         }
 
         // PUT: api/GolDarah/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(GolDarah value)
         {
+            blGolDarah.Update(value);
         }
 
         // DELETE: api/GolDarah/5
-        public void Delete(int id)
+        public void Delete(string id)
         {
+            blGolDarah.Delete(id);
+        }
+
+        // GET: api/GolDarah
+        public List<GolDarah> Get()
+        {
+            return blGolDarah.ListData();
+        } 
+
+        // GET: api/GolDarah/5
+        public GolDarah Get(string id)
+        {
+            return blGolDarah.GetData(id);
         }
     }
 }

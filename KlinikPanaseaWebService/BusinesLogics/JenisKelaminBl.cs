@@ -9,82 +9,82 @@ namespace KlinikPanaseaWebService.BusinesLogics
 {
     public class JenisKelaminBl
     {
-        private JenisKelaminDal daljeniskelamin = new JenisKelaminDal();
+        private JenisKelaminDal dalJenisKelamin = new JenisKelaminDal();
 
-        public void Insert(jeniskelamin datajeniskelamin)
+        public void Insert(JenisKelamin dataJenisKelamin)
         {
             //  cek apakah object data-nya kosong
-            if (datajeniskelamin == null)
+            if (dataJenisKelamin == null)
             {
-                throw new Exception("Data jeniskelamin kosong");
+                throw new Exception("Data JenisKelamin kosong");
             }
 
-            if (datajeniskelamin.Idjeniskelamin.Length == 0 ||
-                datajeniskelamin.Namajeniskelamin.Length == 0)
+            if (dataJenisKelamin.IdJenisKelamin.Length == 0 ||
+                dataJenisKelamin.NamaJenisKelamin.Length == 0)
             {
-                throw new Exception("ID jeniskelamin atau Nama jeniskelamin masing kosong");
+                throw new Exception("ID JenisKelamin atau Nama JenisKelamin masing kosong");
             }
 
             //  cek apakah length kode-nya kurang dari 3 karakter
-            if (datajeniskelamin.Idjeniskelamin.Length > 3)
+            if (dataJenisKelamin.IdJenisKelamin.Length > 3)
             {
-                throw new Exception("ID jeniskelamin lebih dari 3 huruf");
+                throw new Exception("ID JenisKelamin lebih dari 3 huruf");
             }
 
             //  cek apakah length nama lebih dari 30 karakter
-            if (datajeniskelamin.Namajeniskelamin.Length > 30)
+            if (dataJenisKelamin.NamaJenisKelamin.Length > 30)
             {
-                throw new Exception("Nama jeniskelamin lebih dari 30 huruf");
+                throw new Exception("Nama JenisKelamin lebih dari 30 huruf");
             }
 
             //  data sudah valid, lempar ke DAL untuk disimpan
-            daljeniskelamin.Insert(datajeniskelamin);
+            dalJenisKelamin.Insert(dataJenisKelamin);
         }
 
-        public void Update(jeniskelamin datajeniskelamin)
+        public void Update(JenisKelamin dataJenisKelamin)
         {
             //  cek apakah data yang akan diupdate memang sudah ada sebelumnya
-            if (daljeniskelamin.GetData(datajeniskelamin.Idjeniskelamin) == null)
+            if (dalJenisKelamin.GetData(dataJenisKelamin.IdJenisKelamin) == null)
             {
-                throw new Exception("Data jeniskelamin tidak ditemukan");
+                throw new Exception("Data JenisKelamin tidak ditemukan");
             }
 
-            if (datajeniskelamin.Namajeniskelamin.Length == 0)
+            if (dataJenisKelamin.NamaJenisKelamin.Length == 0)
             {
-                throw new Exception("Nama jeniskelamin kosong");
+                throw new Exception("Nama JenisKelamin kosong");
             }
-            if (datajeniskelamin.Namajeniskelamin.Length > 30)
+            if (dataJenisKelamin.NamaJenisKelamin.Length > 30)
             {
-                throw new Exception("Nama jeniskelamin lebih dari 30 huruf");
+                throw new Exception("Nama JenisKelamin lebih dari 30 huruf");
             }
 
             //  lolos validasi
-            daljeniskelamin.Update(datajeniskelamin);
+            dalJenisKelamin.Update(dataJenisKelamin);
         }
 
-        public void Delete(string idjeniskelamin)
+        public void Delete(string idJenisKelamin)
         {
             //  cek apakah data yang akan diupdate memang sudah ada sebelumnya
-            if (daljeniskelamin.GetData(idjeniskelamin) == null)
+            if (dalJenisKelamin.GetData(idJenisKelamin) == null)
             {
-                throw new Exception("Data jeniskelamin tidak ditemukan");
+                throw new Exception("Data JenisKelamin tidak ditemukan");
             }
 
             //  lolos validasi
-            daljeniskelamin.Delete(idjeniskelamin);
+            dalJenisKelamin.Delete(idJenisKelamin);
         }
 
-        public jeniskelamin GetData(string id)
+        public JenisKelamin GetData(string id)
         {
-            jeniskelamin retVal = null;
-            retVal = daljeniskelamin.GetData(id);
+            JenisKelamin retVal = null;
+            retVal = dalJenisKelamin.GetData(id);
             return retVal;
         }
 
-        public List<jeniskelamin> ListData()
+        public List<JenisKelamin> ListData()
         {
-            List<jeniskelamin> retVal = null;
-            retVal = daljeniskelamin.ListData();
+            List<JenisKelamin> retVal = null;
+            retVal = dalJenisKelamin.ListData();
             return retVal;
         }
 

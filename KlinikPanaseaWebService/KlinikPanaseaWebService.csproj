@@ -240,6 +240,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\GolDarahController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JenisKelaminController.cs" />
     <Compile Include="Controllers\PoliklinikController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DataAccessLayers\DbConnection.cs" />
