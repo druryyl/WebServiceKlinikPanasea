@@ -13,6 +13,7 @@ namespace KlinikPanaseaWebService.DataAccessLayers
         {
             using (SqlConnection conn = new SqlConnection(DbConnection.ConnectionString()))
             {
+                conn.Open();
                 string sSql = @"
                     INSERT INTO     Jenis_Kelamin 
                                     (ID_Jenis_Kelamin, Kelamin)
@@ -29,9 +30,10 @@ namespace KlinikPanaseaWebService.DataAccessLayers
         {
             using (SqlConnection conn = new SqlConnection(DbConnection.ConnectionString()))
             {
+                conn.Open();
                 string sSql = @"
                     UPDATE  Jenis_Kelamin 
-                    SET     ID_Jenis_Kelamin = @Kode
+                    SET     ID_Jenis_Kelamin = @Kode,
                             Kelamin = @Nama 
                     WHERE   ID_Jenis_Kelamin = @Kode";
                 SqlCommand cmd = new SqlCommand(sSql, conn);
@@ -46,6 +48,7 @@ namespace KlinikPanaseaWebService.DataAccessLayers
         {
             using (SqlConnection conn = new SqlConnection(DbConnection.ConnectionString()))
             {
+                conn.Open();
                 string sSql = @"
                     DELETE  Jenis_Kelamin 
                     WHERE   ID_Jenis_Kelamin = @Kode";
@@ -56,21 +59,23 @@ namespace KlinikPanaseaWebService.DataAccessLayers
             }
         }
 
-        public JenisKelamin GetData(string idGolDarah)
+        public JenisKelamin GetData(string idJenisKelamin)
         {
             JenisKelamin retVal = null;
 
             using (SqlConnection conn = new SqlConnection(DbConnection.ConnectionString()))
             {
+                conn.Open();
                 string sSql = @"
                     SELECT  ID_Jenis_Kelamin, Kelamin
                     FROM    Jenis_Kelamin
                     WHERE   ID_Jenis_Kelamin = @Kode";
                 SqlCommand cmd = new SqlCommand(sSql, conn);
-                cmd.Parameters.AddWithValue("@Kode", idGolDarah);
+                cmd.Parameters.AddWithValue("@Kode", idJenisKelamin);
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.HasRows)
                 {
+                    dr.Read();
                     retVal = new JenisKelamin
                     {
                         IdJenisKelamin = dr["ID_Jenis_Kelamin"].ToString(),
@@ -87,6 +92,7 @@ namespace KlinikPanaseaWebService.DataAccessLayers
             List<JenisKelamin> retVal = null;
             using (SqlConnection conn = new SqlConnection(DbConnection.ConnectionString()))
             {
+                conn.Open();
                 string sSql = @"
                     SELECT  ID_Jenis_Kelamin, Kelamin
                     FROM    Jenis_Kelamin ";

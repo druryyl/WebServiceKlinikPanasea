@@ -80,6 +80,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -236,18 +237,24 @@
     <Compile Include="BusinesLogics\GolDarahBl.cs" />
     <Compile Include="BusinesLogics\JenisKelaminBl.cs" />
     <Compile Include="BusinesLogics\JenisKunjunganBl.cs" />
+    <Compile Include="BusinesLogics\ParamNoBl.cs" />
     <Compile Include="BusinesLogics\PoliklinikBl.cs" />
+    <Compile Include="BusinesLogics\RekamMedikBl.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\GolDarahController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JenisKelaminController.cs" />
+    <Compile Include="Controllers\JenisKunjunganController.cs" />
     <Compile Include="Controllers\PoliklinikController.cs" />
+    <Compile Include="Controllers\RekamMedikController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DataAccessLayers\DbConnection.cs" />
     <Compile Include="DataAccessLayers\GolDarahDal.cs" />
     <Compile Include="DataAccessLayers\JenisKelaminDal.cs" />
     <Compile Include="DataAccessLayers\JenisKunjunganDal.cs" />
+    <Compile Include="DataAccessLayers\ParamNoDal.cs" />
     <Compile Include="DataAccessLayers\PoliklinikDal.cs" />
+    <Compile Include="DataAccessLayers\RekamMedikDal.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -257,6 +264,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\JenisKelamin.cs" />
     <Compile Include="Models\JenisKunjungan.cs" />
+    <Compile Include="Models\ParamNo.cs" />
     <Compile Include="Models\PoliKlinik.cs" />
     <Compile Include="Models\Registrasi.cs" />
     <Compile Include="Models\RekamMedik.cs" />
@@ -295,9 +303,6 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

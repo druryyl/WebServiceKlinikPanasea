@@ -19,20 +19,20 @@ namespace KlinikPanaseaWebService.BusinesLogics
                 throw new Exception("Data JenisKunjungan kosong");
             }
 
-            if (dataJenisKunjungan.IdJenisKunjungan.Length == 0 ||
-                dataJenisKunjungan.NamaJenisKunjungan.Length == 0)
+            if (dataJenisKunjungan.IdKunjungan.Length == 0 ||
+                dataJenisKunjungan.NamaKunjungan.Length == 0)
             {
                 throw new Exception("ID JenisKunjungan atau Nama JenisKunjungan masing kosong");
             }
 
             //  cek apakah length kode-nya kurang dari 3 karakter
-            if (dataJenisKunjungan.IdJenisKunjungan.Length > 3)
+            if (dataJenisKunjungan.IdKunjungan.Length > 3)
             {
                 throw new Exception("ID JenisKunjungan lebih dari 3 huruf");
             }
 
             //  cek apakah length nama lebih dari 30 karakter
-            if (dataJenisKunjungan.NamaJenisKunjungan.Length > 30)
+            if (dataJenisKunjungan.NamaKunjungan.Length > 30)
             {
                 throw new Exception("Nama JenisKunjungan lebih dari 30 huruf");
             }
@@ -44,34 +44,34 @@ namespace KlinikPanaseaWebService.BusinesLogics
         public void Update(JenisKunjungan dataJenisKunjungan)
         {
             //  cek apakah data yang akan diupdate memang sudah ada sebelumnya
-            if (dalJenisKunjungan.GetData(dataJenisKunjungan.IdJenisKunjungan) == null)
+            if (dalJenisKunjungan.GetData(dataJenisKunjungan.IdKunjungan) == null)
             {
-                throw new Exception("Data JenisKunjungan tidak ditemukan");
+                throw new Exception("Data Jenis Kunjungan tidak ditemukan");
             }
 
-            if (dataJenisKunjungan.NamaJenisKunjungan.Length == 0)
+            if (dataJenisKunjungan.NamaKunjungan.Length == 0)
             {
-                throw new Exception("Nama JenisKunjungan kosong");
+                throw new Exception("Nama Kunjungan kosong");
             }
-            if (dataJenisKunjungan.NamaJenisKunjungan.Length > 30)
+            if (dataJenisKunjungan.NamaKunjungan.Length > 30)
             {
-                throw new Exception("Nama JenisKunjungan lebih dari 30 huruf");
+                throw new Exception("Nama Kunjungan lebih dari 30 huruf");
             }
 
             //  lolos validasi
             dalJenisKunjungan.Update(dataJenisKunjungan);
         }
 
-        public void Delete(string idJenisKunjungan)
+        public void Delete(string id_Kunjungan)
         {
             //  cek apakah data yang akan diupdate memang sudah ada sebelumnya
-            if (dalJenisKunjungan.GetData(idJenisKunjungan) == null)
+            if (dalJenisKunjungan.GetData(id_Kunjungan) == null)
             {
                 throw new Exception("Data JenisKunjungan tidak ditemukan");
             }
 
             //  lolos validasi
-            dalJenisKunjungan.Delete(idJenisKunjungan);
+            dalJenisKunjungan.Delete(id_Kunjungan);
         }
 
         public JenisKunjungan GetData(string id)

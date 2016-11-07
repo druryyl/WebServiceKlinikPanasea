@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using KlinikPanaseaWebService.BusinesLogics;
+using KlinikPanaseaWebService.Models;
 
 namespace KlinikPanaseaWebService.Controllers
 {

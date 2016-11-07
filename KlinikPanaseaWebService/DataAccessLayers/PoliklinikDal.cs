@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using KlinikPanaseaWebService.Models;
 using KlinikPanaseaWebService.DataAccessLayers;
 
-namespace KlinikPanaseaWebService.DataAccessLayer
+namespace KlinikPanaseaWebService.DataAccessLayers
 {
     public class PoliklinikDal
     {
@@ -68,6 +68,7 @@ namespace KlinikPanaseaWebService.DataAccessLayer
 
             using (SqlConnection conn = new SqlConnection(DbConnection.ConnectionString()))
             {
+                conn.Open();
                 string sSql = @"
                     SELECT  id_poliklinik, nama_poliklinik
                     FROM    poliklinik

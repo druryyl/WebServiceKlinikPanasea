@@ -11,7 +11,7 @@ namespace KlinikPanaseaWebService.DataAccessLayers
         {
             string retVal = "";
 
-            retVal = @"Data source =(local);Initial Catalog=KLINIK_PKL;Integrated Security=SSPI;";
+            retVal = @"Data source =(local);Initial Catalog=Klinik_pkl;Integrated Security=SSPI;";
 
             return retVal;
         }

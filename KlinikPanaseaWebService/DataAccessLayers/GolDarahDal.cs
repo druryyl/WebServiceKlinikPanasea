@@ -13,6 +13,7 @@ namespace KlinikPanaseaWebService.DataAccessLayers
         {
             using (SqlConnection conn = new SqlConnection(DbConnection.ConnectionString()))
             {
+                conn.Open();
                 string sSql = @"
                     INSERT INTO     Golongan_Darah 
                                     (ID_Golongan_Darah, Jenis_Darah)
@@ -29,6 +30,7 @@ namespace KlinikPanaseaWebService.DataAccessLayers
         {
             using (SqlConnection conn = new SqlConnection(DbConnection.ConnectionString()))
             {
+                conn.Open();
                 string sSql = @"
                     UPDATE  Golongan_Darah 
                     SET     ID_Golongan_Darah = @Kode
@@ -46,6 +48,7 @@ namespace KlinikPanaseaWebService.DataAccessLayers
         {
             using (SqlConnection conn = new SqlConnection(DbConnection.ConnectionString()))
             {
+                conn.Open();
                 string sSql = @"
                     DELETE  Golongan_Darah 
                     WHERE   ID_Golongan_Darah = @Kode";
@@ -62,6 +65,7 @@ namespace KlinikPanaseaWebService.DataAccessLayers
 
             using (SqlConnection conn = new SqlConnection(DbConnection.ConnectionString()))
             {
+                conn.Open();
                 string sSql = @"
                     SELECT  ID_Golongan_Darah, Jenis_Darah
                     FROM    Golongan_Darah
@@ -71,10 +75,11 @@ namespace KlinikPanaseaWebService.DataAccessLayers
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.HasRows)
                 {
+                    dr.Read();
                     retVal = new GolDarah
                     {
                         IdGolDarah = dr["ID_Golongan_Darah"].ToString(),
-                        NamaGoldarah = dr["Jenis_Darah"].ToString()
+                        NamaGolDarah = dr["Jenis_Darah"].ToString()
                     };
                 }
                 cmd.Dispose();
@@ -87,6 +92,7 @@ namespace KlinikPanaseaWebService.DataAccessLayers
             List<GolDarah> retVal = null;
             using (SqlConnection conn = new SqlConnection(DbConnection.ConnectionString()))
             {
+                conn.Open();
                 string sSql = @"
                     SELECT  ID_Golongan_Darah, Jenis_Darah
                     FROM    Golongan_Darah ";

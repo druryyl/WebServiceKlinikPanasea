@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using KlinikPanaseaWebService.Models;
 using KlinikPanaseaWebService.DataAccessLayers;
 
-namespace KlinikPanaseaWebService.DataLayer
+namespace KlinikPanaseaWebService.DataAccessLayers
 {
     public class JenisKunjunganDal
     {
@@ -16,9 +16,10 @@ namespace KlinikPanaseaWebService.DataLayer
         {
             using (SqlConnection conn = new SqlConnection(DbConnection.ConnectionString()))
             {
+                conn.Open();
                 string sSql = @"
                     INSERT INTO     Jenis_Kunjungan 
-                                    (id_poliklinik, Nama_Kunjungan)
+                                    (id_Kunjungan, Nama_Kunjungan)
                     VALUES          (@Kode, @Nama)";
                 SqlCommand cmd = new SqlCommand(sSql, conn);
                 cmd.Parameters.AddWithValue("@Kode", data.IdKunjungan);
@@ -32,9 +33,10 @@ namespace KlinikPanaseaWebService.DataLayer
         {
             using (SqlConnection conn = new SqlConnection(DbConnection.ConnectionString()))
             {
+                conn.Open();
                 string sSql = @"
                     UPDATE  Jenis_Kunjungan 
-                    SET     ID_Kunjungan = @Kode
+                    SET     ID_Kunjungan = @Kode,
                             Nama_Kunjungan = @Nama 
                     WHERE   ID_Kunjungan = @Kode";
                 SqlCommand cmd = new SqlCommand(sSql, conn);
@@ -49,6 +51,7 @@ namespace KlinikPanaseaWebService.DataLayer
         {
             using (SqlConnection conn = new SqlConnection(DbConnection.ConnectionString()))
             {
+                conn.Open();
                 string sSql = @"
                     DELETE  Jenis_Kunjungan 
                     WHERE   ID_Kunjungan = @Kode";
@@ -59,21 +62,23 @@ namespace KlinikPanaseaWebService.DataLayer
             }
         }
 
-        public JenisKunjungan GetData(string idPoliklinik)
+        public JenisKunjungan GetData(string idKunjungan)
         {
             JenisKunjungan retVal = null;
 
             using (SqlConnection conn = new SqlConnection(DbConnection.ConnectionString()))
             {
+                conn.Open();
                 string sSql = @"
                     SELECT  ID_Kunjungan, Nama_Kunjungan
                     FROM    Jenis_Kunjungan
                     WHERE   ID_Kunjungan = @Kode";
                 SqlCommand cmd = new SqlCommand(sSql, conn);
-                cmd.Parameters.AddWithValue("@Kode", idPoliklinik);
+                cmd.Parameters.AddWithValue("@Kode", idKunjungan);
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.HasRows)
                 {
+                    dr.Read();
                     retVal = new JenisKunjungan
                     {
                         IdKunjungan = dr["ID_Kunjungan"].ToString(),
@@ -90,6 +95,7 @@ namespace KlinikPanaseaWebService.DataLayer
             List<JenisKunjungan> retVal = null;
             using (SqlConnection conn = new SqlConnection(DbConnection.ConnectionString()))
             {
+                conn.Open();
                 string sSql = @"
                     SELECT  ID_Kunjungan, Nama_Kunjungan
                     FROM    Jenis_Kunjungan ";
@@ -103,7 +109,7 @@ namespace KlinikPanaseaWebService.DataLayer
                     {
                         retVal.Add(new JenisKunjungan
                         {
-                            IdKunjungan = dr["id_poliklinik"].ToString(),
+                            IdKunjungan = dr["id_kunjungan"].ToString(),
                             NamaKunjungan = dr["Nama_Kunjungan"].ToString()
                         });
                     }

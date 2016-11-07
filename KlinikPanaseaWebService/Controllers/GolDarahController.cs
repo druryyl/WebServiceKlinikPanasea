@@ -11,6 +11,8 @@ namespace KlinikPanaseaWebService.Controllers
 {
     public class GolDarahController : ApiController
     {
+        GolDarahBl blGolDarah = new GolDarahBl();
+
         // POST: api/GolDarah
         public void Post(GolDarah value)
         {
