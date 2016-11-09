@@ -16,8 +16,9 @@ namespace KlinikPanaseaWebService.DataAccessLayers
             {
                 IsolationLevel = IsolationLevel.ReadCommitted
             };
-            using (TransactionScope tran = new TransactionScope(TransactionScopeOption.Required, tranOption))
+            using (TransactionScope tran = new TransactionScope(TransactionScopeOption.Suppress, tranOption))
             {
+                using (SqlConnection conn2 = new SqlConnection(DbConnection.ConnectionString()))
                 using (SqlConnection conn = new SqlConnection(DbConnection.ConnectionString()))
                 {
                     conn.Open();
@@ -37,9 +38,10 @@ namespace KlinikPanaseaWebService.DataAccessLayers
                     {
                         sSql = @"
                             INSERT INTO    ParamNo(KodeNomor,Value)
-                            VALUE          (@Kode, 1) ";
-                        SqlCommand cmd2 = new SqlCommand(sSql, conn);
+                            VALUES          (@Kode, 1) ";
+                        SqlCommand cmd2 = new SqlCommand(sSql, conn2);
                         cmd2.Parameters.AddWithValue("@Kode", KodeNo);
+                        conn2.Open();
                         cmd2.ExecuteNonQuery();
                         cmd2.Dispose();
                     }

@@ -24,8 +24,13 @@ namespace KlinikPanaseaWebService.Models
         //  contructor
         public RekamMedik()
         {
-            Sex = new Models.JenisKelamin();
+            NamaPasien = "";
+            IdRekamMedik = "";
+            TglLahir = new DateTime(3000, 1, 1);
+            Alamat = "";
+            Telpon = "";
 
+            Sex = new Models.JenisKelamin();
             GolonganDarah = new Models.GolDarah();
         }
 

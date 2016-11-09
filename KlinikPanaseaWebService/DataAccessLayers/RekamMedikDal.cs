@@ -58,7 +58,7 @@ namespace KlinikPanaseaWebService.DataAccessLayers
                 cmd.Parameters.AddWithValue("@KodeJenisKelamin", data.Sex.IdJenisKelamin);
                 cmd.Parameters.AddWithValue("@KodeGolDarah", data.GolonganDarah.IdGolDarah);
                 cmd.Parameters.AddWithValue("@NamaPasien", data.NamaPasien);
-                cmd.Parameters.AddWithValue("@TglLahir", data.TglLahir);
+                cmd.Parameters.AddWithValue("@TglLahir", (DateTime)data.TglLahir);
                 cmd.Parameters.AddWithValue("@Alamat", data.Alamat);
                 cmd.Parameters.AddWithValue("@Telepon", data.Telpon);
                 cmd.ExecuteNonQuery();
@@ -92,12 +92,12 @@ namespace KlinikPanaseaWebService.DataAccessLayers
                     SELECT      aa.ID_Rekam_Medik, aa.ID_Jenis_Kelamin, aa.ID_Golongan_Darah,
                                 aa.Nama_Pasien, aa.Tgl_Lahir, aa.Alamat, aa.Telepon,            
                                 ISNULL(bb.Kelamin, ' ') Kelamin,
-                                ISNULL(cc.Jenis_Darah, ' ') Jenis_Darah,                    
+                                ISNULL(cc.Jenis_Darah, ' ') Jenis_Darah                    
                     FROM        Rekam_Medik aa
                     LEFT JOIN   Jenis_Kelamin bb ON aa.ID_Jenis_Kelamin = bb.ID_Jenis_Kelamin
                     LEFT JOIN   Golongan_Darah cc ON aa.ID_Golongan_Darah = cc.ID_Golongan_Darah 
                     WHERE       ID_Rekam_Medik = @Kode";
-                conn.Open();
+                //conn.Open();
                 SqlCommand cmd = new SqlCommand(sSql, conn);
                 cmd.Parameters.AddWithValue("@Kode", idRekamMedik);
                 SqlDataReader dr = cmd.ExecuteReader();

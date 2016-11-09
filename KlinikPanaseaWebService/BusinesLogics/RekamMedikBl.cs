@@ -40,18 +40,21 @@ namespace KlinikPanaseaWebService.BusinesLogics
                 throw new Exception("ID Rekam Medik sudah ada");
             }
             
-            if (blJenisKelamin.GetData(dataRekamMedik.Sex.IdJenisKelamin) != null)
+            if (blJenisKelamin.GetData(dataRekamMedik.Sex.IdJenisKelamin) == null)
             {
                 throw new Exception("Jenis Kelamin tidak valid");
             }
 
-            if (blGolDarah.GetData(dataRekamMedik.GolonganDarah.IdGolDarah) != null)
+            if (blGolDarah.GetData(dataRekamMedik.GolonganDarah.IdGolDarah) == null)
             {
                 throw new Exception("GolDarah tidak valid");
             }
 
             //  isikan ID Rekam Medik dengan No.Terakhir yang ada di ParamNo
-            dataRekamMedik.IdRekamMedik = blParamNo.GetValue("NO_RM").ToString();
+            string noUrutRm = blParamNo.GetValue("NO_RM").ToString();
+            //noUrutRm.PadLeft(6, '0');
+            string xNo = noUrutRm.PadLeft(6, '0');
+            dataRekamMedik.IdRekamMedik = xNo;
             //  data sudah valid, lempar ke DAL untuk disimpan
             dalRekamMedik.Insert(dataRekamMedik);
         }
